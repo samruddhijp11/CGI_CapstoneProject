@@ -1,0 +1,63 @@
+<header>
+  <div class="logo">LuxBook</div>
+  <nav>
+    <a routerLink="/">🏠 Home</a>
+    <a routerLink="/wishlist">❤️ Wishlist</a>
+    <a routerLink="/cart">🛒 Cart</a>
+    <a routerLink="/myorders" class="active">📦 My Orders</a>
+    <button (click)="logout()">🚪 Logout</button>
+  </nav>
+</header>
+
+<div class="orders">
+  <h2>📦 My Orders</h2>
+  <div *ngIf="loading" class="loading">
+    Loading your orders...
+  </div>
+  <!-- <div *ngIf="orders.length === 0" style="text-align:center; font-size:1.2rem;">
+    No past orders found.
+  </div> -->
+  <div *ngIf="!loading && orders.length === 0" class="no-orders"style="text-align:center; font-size:1.2rem;">
+    <h3>No orders found</h3>
+    <p>You haven't placed any orders yet.</p>
+    <a routerLink="/" class="browse-books">Browse Books</a>
+  </div>
+
+  <!-- <div *ngFor="let order of orders; let i = index">
+    <div *ngFor="let item of order.items" class="order-item">
+      <img [src]="item.book.img" [alt]="item.book.title" (error)="item.book.img='assets/images/fallback.jpg'">
+      <div class="order-item-details">
+        <h3>{{ item.book.title }}</h3>
+        <p>{{ item.book.author }}</p>
+        <p>₹{{ item.book.price }}</p>
+        <p>Qty: {{ item.quantity }}</p>
+        <p><em>Order #{{ i + 1 }} • {{ order.status }}</em></p>
+      </div>
+    </div>
+  </div> -->
+
+  <div *ngFor="let order of orders; let i = index" class="order-container">
+    <div class="order-header">
+      <h3>Order #{{ order.id }}</h3>
+      <span class="order-date">{{ order.createdAt | date:'medium' }}</span>
+      <span class="order-status" [ngClass]="order.status.toLowerCase()">
+        {{ order.status }}
+      </span>
+    </div>
+    
+    <div class="order-total">
+      Total: ₹{{ order.total | number:'1.2-2' }}
+    </div>
+
+    <div class="order-items">
+      <div *ngFor="let item of order.items" class="order-item">
+        <img [src]="item.book.img" [alt]="item.book.title" (error)="onImageError($event)">
+        <div class="order-item-details">
+          <h4>{{ item.book.title }}</h4>
+          <p>{{ item.book.author }}</p>
+          <p>₹{{ item.price | number:'1.2-2' }} × {{ item.quantity }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

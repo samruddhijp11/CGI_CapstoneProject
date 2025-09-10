@@ -1,0 +1,31 @@
+<main class="container">
+  <div class="box">
+    <h2>Delivery Address</h2>
+    <div class="row"><input [(ngModel)]="address.name" placeholder="Full Name"></div>
+    <div class="row"><textarea [(ngModel)]="address.address" rows="3" placeholder="Street Address"></textarea></div>
+    <div class="row"><input [(ngModel)]="address.city" placeholder="City"><input [(ngModel)]="address.pincode" placeholder="Pincode"></div>
+    <div class="row"><input [(ngModel)]="address.phone" placeholder="Phone Number"></div>
+  </div>
+
+  <div class="box">
+    <h2>Payment</h2>
+    <div class="row"><label><input type="radio" name="pay" value="upi" (change)="onPaymentChange('upi')"> UPI</label></div>
+    <div class="row" *ngIf="paymentMethod==='upi'"><input [(ngModel)]="upiId" placeholder="Enter UPI ID"></div>
+    <div class="row"><label><input type="radio" name="pay" value="cod" (change)="onPaymentChange('cod')"> Cash on Delivery</label></div>
+  </div>
+
+  <div class="box">
+    <h2>Order Summary</h2>
+    <div *ngIf="items.length===0">No items in checkout.</div>
+    <div *ngFor="let b of items" class="row">
+      <img class="thumb" [src]="b.book.img" alt="{{b.book.title}}" (error)="b.book.img='assets/images/fallback.jpg'">
+      <div>
+        <div style="font-weight:bold">{{b.book.title}}</div>
+        <div>{{b.book.author}}</div>
+        <div>₹{{b.book.price}} • Qty: {{b.quantity}}</div>
+      </div>
+    </div>
+    <div style="font-weight:bold;margin-top:10px;">Total: ₹{{total}}</div>
+    <button class="btn" (click)="placeOrder()">Place Order</button>
+  </div>
+</main>

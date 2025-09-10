@@ -1,0 +1,39 @@
+<header>
+  <div class="logo">LuxBook
+  <nav>
+    <button (click)="logout()">Logout</button>
+  </nav>
+  </div>
+</header>
+
+<main>
+  <div *ngIf="loading">Loading book details...</div>
+
+  <div *ngIf="!loading && book" class="book-details">
+    <img [src]="book.img" [alt]="'Cover of ' + book.title" />
+
+    <div class="book-info" *ngIf="book">
+  <h1>{{ book.title }}</h1>
+  <p>Author: {{ book.author }}</p>
+  <p class="price">₹{{ book.price }}</p>
+  <p class="rating">⭐ {{ book.rating || '-' }} | 👁️ {{ book.views || '-' }} views</p>
+  <p>{{ book.description }}</p>
+
+  <button class="btn" (click)="addToCart(book)">Add to Cart</button>
+  <button class="btn" (click)="buyNow(book)">
+        ⚡ Buy Now
+      </button>
+  <button class="btn" (click)="toggleWishlist(book)">
+    {{ isInWishlist(book) ? 'Added to Wishlist ❤️' : 'Add to Wishlist ♡' }} 
+  </button>
+</div>
+
+  </div>
+
+  <a routerLink="/" class="btn">Back to Home</a>
+</main>
+
+<footer>
+  <p>© 2025 LuxBook. All rights reserved.</p>
+</footer>
+

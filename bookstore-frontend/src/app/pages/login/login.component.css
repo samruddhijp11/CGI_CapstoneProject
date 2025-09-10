@@ -1,0 +1,114 @@
+/* Fullscreen background */
+.login-page {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../../../assets/images/login.jpg) no-repeat center center fixed;
+  background-size: cover;
+  
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Centered container */
+.login-container {
+  text-align: center;
+  width: 350px;
+  padding: 30px;
+  border-radius: 12px;
+ /* background: rgba(0, 0, 0, 0.);  semi-transparent overlay */
+  color: #d4af37;
+  /*box-shadow: 0 4px 12px rgba(0,0,0,0.6);*/
+}
+
+/* Title */
+h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #d4af37;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+/* Inputs & buttons */
+input[type="email"],
+input[type="password"],
+input[type="submit"],
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #d4af37;
+  font-size: 16px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+input[type="email"],
+input[type="password"] {
+  background: rgba(17, 17, 17, 0.85);
+  color: #d4af37;
+}
+
+input[type="submit"] {
+  background: #d4af37;
+  color: #111;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+input[type="submit"]:hover {
+  background: #b8962e;
+}
+
+/* Google button */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: gold;
+  color: #444;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.google-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.google-btn:hover {
+  background: #f5f5f5;
+}
+
+/* Links */
+.aux {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.aux a {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.aux a:hover {
+  text-decoration: underline;
+}
+
+/* Messages */
+.message {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.message.success { background:#d4f5c3; color:#111; border:1px solid #a3d789; }
+.message.error { background:#f5c3c3; color:#111; border:1px solid #d78989; }

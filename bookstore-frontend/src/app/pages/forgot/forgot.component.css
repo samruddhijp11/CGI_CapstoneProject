@@ -1,0 +1,85 @@
+.forgot-page {
+  background: url('../../../assets/images/hero-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: #d4af37;
+}
+
+.container {
+  padding: 30px;
+  border-radius: 10px;
+  width: 320px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  background: rgba(26,26,26,0.3);
+}
+
+h2 { margin-bottom: 20px; }
+
+label {
+  display: block;
+  margin-top: 10px;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #d4af37;
+  border-radius: 5px;
+  background: rgba(0,0,0,0.6);
+  color: #d4af37;
+}
+
+input[type="submit"] {
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  background: #d4af37;
+  color: #111;
+  border: none;
+}
+
+input[type="submit"]:hover {
+  background: #b8962e;
+}
+
+.message {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.message.success {
+  background: #d4f5c3;
+  color: #111;
+  border: 1px solid #a3d789;
+}
+
+.message.error {
+  background: #f5c3c3;
+  color: #111;
+  border: 1px solid #d78989;
+}
+
+.aux {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.aux a {
+  color: #d4af37;
+  text-decoration: none;
+}
+
+.aux a:hover {
+  text-decoration: underline;
+}

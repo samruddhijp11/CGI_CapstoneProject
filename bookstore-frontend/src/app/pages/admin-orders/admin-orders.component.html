@@ -1,0 +1,95 @@
+<header>
+  <div class="logo">LuxBook Admin</div>
+  <nav>
+    <ul>
+      <li><button (click)="goHome()">Home</button></li>
+      <li><button (click)="logout()">Logout</button></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>All Orders</h1>
+  <!-- <div *ngFor="let order of orders; let i = index" class="order-container">
+    <div class="order-header">
+      <h3>Order #{{ order.id }}</h3>
+      <span class="order-date">{{ order.createdAt | date:'medium' }}</span>
+      <span class="order-status" [ngClass]="order.status.toLowerCase()">
+        {{ order.status }}
+      </span>
+    </div>
+    
+    <div class="order-total">
+      Total: ₹{{ order.total | number:'1.2-2' }}
+    </div>
+
+    <div class="order-items">
+      <div *ngFor="let item of order.items" class="order-item">
+        <img [src]="item.book.img" [alt]="item.book.title" (error)="onImageError($event)">
+        <div class="order-item-details">
+          <h4>{{ item.book.title }}</h4>
+          <p>{{ item.book.author }}</p>
+          <p>₹{{ item.price | number:'1.2-2' }} × {{ item.quantity }}</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div *ngIf="orders.length > 0; else noOrders">
+    <div *ngFor="let order of orders" class="order">
+      <h3>Order ID: {{ order.id }}</h3>
+      <p><b>Date:</b> {{ order.createdAt | date:'medium' }}</p>
+      <p><b>Status:</b> {{ order.status }}</p>
+      <p><b>Total:</b> ₹{{ order.total }}</p>
+
+      <div class="items">
+        <div *ngFor="let item of order.items" class="item">
+          <img [src]="item.bookImg" [alt]="item.bookTitle" />
+          <div class="item-details">
+            <p><b>{{ item.bookTitle }}</b></p>
+            <p>Qty: {{ item.quantity }}</p>
+            <p>Price: ₹{{ item.price }}</p> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noOrders>
+    <p>No orders yet.</p>
+  </ng-template>
+
+
+  <h2>Add New Book</h2>
+  <form (ngSubmit)="addBook()">
+    <div>
+      <label>Title:</label>
+      <input type="text" [(ngModel)]="newBook.title" name="title" required />
+    </div>
+    <div>
+      <label>Author:</label>
+      <input type="text" [(ngModel)]="newBook.author" name="author" required />
+    </div>
+    <div>
+      <label>Price:</label>
+      <input type="number" [(ngModel)]="newBook.price" name="price" required />
+    </div>
+    <div>
+      <label>Image URL:</label>
+      <input type="text" [(ngModel)]="newBook.img" name="img" />
+    </div>
+    <div>
+      <label>Category:</label>
+      <input type="text" [(ngModel)]="newBook.category" name="category" required />
+    </div>
+    <div>
+      <label> Quantity:</label>
+      <input type="number" [(ngModel)]="newBook.quantity" name="quantity" required />
+    </div>
+    <div>
+      <label>Description:</label>
+      <input type="text" [(ngModel)]="newBook.description" name="description" required />
+    </div>
+    <button type="submit">Add Book</button>
+  </form>
+</main>

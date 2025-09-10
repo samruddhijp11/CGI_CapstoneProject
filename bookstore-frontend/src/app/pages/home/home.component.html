@@ -1,0 +1,77 @@
+<div class="home-container">
+  <header>
+    <div class="container header-inner">
+      <div class="logo">LuxBook</div>
+      <nav id="nav-links">
+        <a routerLink="/">🏠︎ Home</a>
+        <a routerLink="/wishlist" *ngIf="isLoggedIn">❤️ Wishlist</a>
+        <a routerLink="/cart" id="cart-link" *ngIf="isLoggedIn">
+          🛒Cart <span id="cart-count" class="badge">{{ cartCount }}</span></a>
+        <a routerLink="/myorders" id="orders-link" *ngIf="isLoggedIn">📦Orders</a>
+        <a routerLink="/login" id="login-link" *ngIf="!isLoggedIn">👤Login</a>
+        <button id="logout-link" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Your Next Favorite Book Awaits</h1>
+        <p>Your gateway to premium books in Fantasy, Horror, Comedy & more</p>
+        <button class="btn-primary" (click)="showAllBooks()">Explore Books</button>
+      </div>
+    </section>
+
+    <!-- search -->
+    <div class="container" >
+      <input
+        type="text" id="searchBar"
+        placeholder="Search books by title or author..."
+        (input)="searchBooks($event.target.value)"
+      />
+    </div>
+
+    <!-- categories -->
+    <section id="categories" class="container">
+      <h2>Book Categories</h2>
+      <div class="categories-grid">
+        <div
+          class="category-card"
+          *ngFor="let cat of categories"
+          (click)="filterByCategory(cat.name)"
+        >
+          <img [src]="cat.img" (error)="onImageError($event)" />
+          <h3>{{ cat.name }}</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- books -->
+    <section class="container">
+      <h2>All Books</h2>
+      <div class="books-grid">
+        <div class="book-card" *ngFor="let book of filteredBooks">
+          <a [routerLink]="['/book', book.id]" class="book-link">
+          <img class="book-img" [src]="book.img" [alt]="book.title" (error)="onImageError($event)" />
+          <div class="book-title">{{ book.title }}</div>
+          </a>
+          <div class="book-author">{{ book.author }}</div>
+          <div class="book-price">₹{{ book.price }}</div>
+          <div class="row-actions">
+            <button class="btn btn-add" (click)="addToCart(book)">Add to Cart</button>
+            <button class="btn btn-buy" (click)="buyNow(book)">Buy Now</button>
+            <button class="btn btn-wishlist" (click)="addToWishlist(book)">Add to Wishlist</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 LuxBook. All rights reserved.</p>
+    </div>
+  </footer>
+</div>

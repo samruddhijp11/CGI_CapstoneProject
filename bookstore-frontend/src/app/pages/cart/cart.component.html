@@ -1,0 +1,44 @@
+<header>
+  <div class="logo">LuxBook</div>
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/wishlist">❤️ Wishlist</a>
+    <a routerLink="/cart">🛒 Cart</a>
+    <button (click)="logout()">Logout</button>
+  </nav>
+</header>
+
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <div *ngIf="cart.length === 0; else cartItems">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <ng-template #cartItems>
+    <div *ngFor="let item of cart; let i = index" class="checkout-item">
+      <img [src]="item.book.img" alt="{{ item.book.title }}" (error)="onImageError($event)">
+      <div class="checkout-item-details">
+        <h3>{{ item.book.title }}</h3>
+        <p>{{ item.book.author }}</p>
+        <p>₹{{ item.book.price }}</p>
+        <div class="quantity-controls">
+          <button (click)="updateQuantity(item, -1)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="updateQuantity(item, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="total">Total: ₹{{ total | number:'1.2-2' }}</div>
+
+    <div class="payment-methods">
+      <h3>Select Payment Method:</h3>
+      <label><input type="radio" name="payment" value="upi" [(ngModel)]="paymentMethod"> UPI</label>
+      <label><input type="radio" name="payment" value="card" [(ngModel)]="paymentMethod"> Credit/Debit Card</label>
+      <label><input type="radio" name="payment" value="cod" [(ngModel)]="paymentMethod"> Cash on Delivery</label>
+    </div>
+
+    <button class="place-order" (click)="placeOrder()">Place Order</button>
+  </ng-template>
+</div>

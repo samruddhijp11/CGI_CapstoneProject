@@ -1,0 +1,56 @@
+<header>
+  <div class="logo">LuxBook</div>
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/wishlist">❤️ Wishlist</a>
+    <a routerLink="/cart">🛒 Cart</a>
+    <a routerLink="/login">Logout</a>
+  </nav>
+</header>
+
+<div class="confirmation">
+  <h2>✅ Your order has been placed successfully!</h2>
+  <p>Thank you for shopping with LuxBook. Your books will be delivered soon.</p>
+
+
+  <div class="order-summary" *ngIf="lastOrder; else noOrder">
+    <div class="order-header">
+      <h3>Order #{{ lastOrder.id || 'Processing' }}</h3>
+      <p>Status: <span class="status">{{ lastOrder.status }}</span></p>
+      <p>Total: <strong>₹{{ lastOrder.total | number:'1.2-2' }}</strong></p>
+      <p *ngIf="lastOrder.createdAt">Placed on: {{ lastOrder.createdAt | date:'medium' }}</p>
+    </div>
+
+    <div class="order-items">
+      <h4>Items Ordered:</h4>
+      <div class="order-item" *ngFor="let item of lastOrder.items">
+        <img [src]="item.book.img" (error)="onImageError($event)" [alt]="item.book.title">
+        <div class="order-item-details">
+          <h5>{{ item.book.title }}</h5>
+          <p>{{ item.book.author }}</p>
+          <p>₹{{ item.price | number:'1.2-2' }} × {{ item.quantity }}</p>
+          <p><strong>Subtotal: ₹{{ (item.price * item.quantity) | number:'1.2-2' }}</strong></p>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <!-- <div class="order-items" *ngIf="lastOrder.length > 0; else noOrder">
+    <div class="order-item" *ngFor="let item of lastOrder">
+      <img [src]="item.book.img " (error)="onImageError($event)" [alt]="item.book.title">
+      <div class="order-item-details">
+        <h3>{{ item.book.title }}</h3>
+        <p>{{ item.book.author }}</p>
+        <p>₹{{ item.book.price }}</p>
+        <p>Qty: {{ item.quantity }}</p>
+      </div>
+    </div>
+  </div> -->
+
+  <ng-template #noOrder>
+    <p>No order details found.</p>
+    <a routerLink="/" class="browse-books">Continue Shopping</a>
+  </ng-template>
+  <div class="panel">
+  <button (click)="goToMyOrders()" class="view-orders-btn" style="cursor:pointer;">📦View My Orders</button>
+  <a routerLink="/" class="continue-shopping">Continue Shopping</a></div>
+</div>

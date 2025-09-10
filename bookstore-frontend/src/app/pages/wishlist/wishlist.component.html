@@ -1,0 +1,44 @@
+<header>
+  <div class="logo">LuxBook</div>
+  <nav>
+    <a [routerLink]="['/']">Home</a>
+    <a [routerLink]="['/wishlist']">❤️ Wishlist</a>
+    <a [routerLink]="['/cart']">🛒 Cart</a>
+    <button (click)="logout()">Logout</button>
+  </nav>
+</header>
+
+<div class="wishlist-container">
+  <h2>Your Wishlist</h2>
+
+  <!-- Empty State -->
+  <div *ngIf="wishlist().length === 0" style="text-align:center; font-size:1.2rem;">
+    <p>Your wishlist is empty.</p>
+  </div>
+
+  <!-- Wishlist Items -->
+  <div *ngFor="let book of wishlist(); let i = index" class="wishlist-item">
+    <img 
+      [src]="book.img" 
+      [alt]="book.title" 
+      (error)="book.img='assets/fallback.jpg'" 
+      class="book-cover"
+    />
+    
+    <div class="wishlist-item-details">
+      <h3>{{ book.title }}</h3>
+      <p>{{ book.author }}</p>
+      <p>₹{{ book.price }}</p>
+    </div>
+
+    <div class="wishlist-actions">
+      <button class="btn add-to-cart-btn" (click)="addToCart(i)">
+        🛒 Add to Cart
+      </button>
+
+      <button class="btn remove-btn" (click)="removeFromWishlist(i)">
+        ❌ Remove
+      </button>
+    </div>
+  </div>
+</div>

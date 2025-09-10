@@ -1,0 +1,25 @@
+<div class="forgot-page">
+  <div class="container">
+    <h2>Forgot Password</h2>
+
+    <form (ngSubmit)="onSubmit()" #forgotForm="ngForm">
+      <label>Email:</label>
+      <input 
+        type="email" 
+        [(ngModel)]="email" 
+        name="email" 
+        placeholder="Enter your email" 
+        required
+      >
+      <input type="submit" value="Send Reset Link">
+    </form>
+
+    <div *ngIf="message" [ngClass]="{'message': true, 'success': success, 'error': !success}">
+      {{ message }}
+    </div>
+
+    <div class="aux">
+      <a (click)="goBackToLogin()" style="cursor:pointer;">Back to Login</a>
+    </div>
+  </div>
+</div>

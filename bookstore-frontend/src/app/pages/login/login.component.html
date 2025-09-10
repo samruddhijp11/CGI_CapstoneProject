@@ -1,0 +1,27 @@
+<div class="login-page">
+  <div class="login-container">
+    <h2>Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <input type="email" formControlName="email" placeholder="Email" required />
+      <input type="password" formControlName="password" placeholder="Password" required />
+      <input type="submit" value="Sign In" />
+    </form>
+
+    <div *ngIf="message" class="message" [ngClass]="messageType">{{ message }}</div>
+
+    <div class="aux">
+      New here? 
+      <a (click)="goToRegister(); $event.preventDefault()" style="cursor:pointer;">Create an account</a>
+    </div>
+
+    <div class="aux">
+      <a (click)="goToForgot(); $event.preventDefault()" style="cursor:pointer;">Forgot Password?</a>
+    </div>
+
+    <button class="google-btn" (click)="onGoogleLogin()">
+      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" />
+      Sign in with Google
+    </button>
+  </div>
+</div>
