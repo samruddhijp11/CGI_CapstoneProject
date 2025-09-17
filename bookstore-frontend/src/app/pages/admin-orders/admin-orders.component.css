@@ -37,6 +37,37 @@ main {
 h1 { 
     text-align:center; 
     margin-bottom:1.5rem; }
+
+/* Inputs & buttons */
+input[type="text"],
+input[type="number"],
+input[type="submit"]{
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #d4af37;
+  font-size: 16px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+input[type="text"],
+input[type="number"] {
+  background: rgba(17, 17, 17, 0.85);
+  color: #d4af37;
+}
+
+input[type="submit"] {
+  background: #d4af37;
+  color: #111;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+input[type="submit"]:hover {
+  background: #b8962e;
+}
+
 .order { 
     background:#111; 
     padding:1rem; 
